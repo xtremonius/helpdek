@@ -72,7 +72,21 @@
             </div>
         </nav>
 
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-3">
+                    @include('includes.menu')
+                </div>
+                <div class="col-md-9">
+                    @yield('content')
+                </div>
+
+
+            </div>
+        </div>
+
         <main class="py-4">
+<<<<<<< HEAD
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">
@@ -84,6 +98,9 @@
                     </div>
                 </div>
             </div>
+=======
+            
+>>>>>>> 4734bf1f1c8b930c9b1054a5cd0132cade556eff
         </main>
     </div>
 </body>
