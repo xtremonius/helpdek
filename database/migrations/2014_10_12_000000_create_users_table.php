@@ -4,6 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+
 class CreateUsersTable extends Migration
 {
     /**
@@ -19,9 +20,10 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->smallInteger('role')->default(2); // 0: Admin | 1: Support | 2: Client | si no se especifica por default es 2              
             $table->rememberToken();
             $table->timestamps();
-        });
+        });  
     }
 
     /**
