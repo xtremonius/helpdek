@@ -7,7 +7,8 @@
 
     <div class="card-body">
 
-    <form action="">
+    <form action="" method="POST">
+        @csrf
     <fieldset>
 
 
@@ -16,16 +17,17 @@
         <!-- <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
         <select class="form-control" id="category_id">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
+            <option value="0">General</option>
+            @foreach($categories as $category)
+                
+                <option value="{{ $category->id }}">{{ $category->name }}</option>
+
+            @endforeach
         </select>
         </div>
         <div class="form-group">
         <label for="severity">Severidad</label>
-        <select class="form-control" id="severity">
+        <select class="form-control" id="severity" name="severity">
             <option value="M">Menor</option>
             <option value="N">Normal</option>
             <option value="A">Alta</option>
@@ -33,11 +35,11 @@
         </div>
         <div class="form-group">
         <label for="title">Título</label>
-        <input type="text" class="form-control" id="title" aria-describedby="emailHelp" placeholder="Enter title">
+        <input type="text" class="form-control" id="title" name="title" aria-describedby="emailHelp" placeholder="Enter title">
         </div>
         <div class="form-group">
         <label for="description">Descripción</label>
-        <textarea class="form-control" id="description" rows="3"></textarea>
+        <textarea class="form-control" id="description" name="description" rows="3"></textarea>
         </div>
         <div class="form-group">
     <!--  <label for="exampleInputPassword1">Password</label>
