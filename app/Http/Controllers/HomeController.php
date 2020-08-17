@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Incident;
+use Validator;
 
 class HomeController extends Controller
 {
@@ -37,7 +38,16 @@ class HomeController extends Controller
 
     public function postReport(Request $request)
     {
-       
+
+        $rules = [
+            'category_id' => 'sometimes|exists:categories,id',
+            'severity' => 'required|in:M,N,A',
+            'title' => 'required|min:5',
+            'description' => 'required|min:15',
+        ];
+
+
+       $this->validate($request, $rules);
 
        $incident = new Incident();
        $incident->category_id = $request->input('category_id') ?: null;// ?: operador ternario? si el valor es falso
