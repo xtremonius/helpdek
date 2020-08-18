@@ -7,116 +7,13 @@
 
     <div class="card-body">
 
-    <form action="">
-    <fieldset>
+        @if (session('status'))
+            <div class="alert alert-success" role="alert">
+                {{ session('status') }}
+            </div>
+        @endif
 
-
-        <div class="form-group">
-        <label for="category_id">Categoría</label>
-        <!-- <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
-        <select class="form-control" id="category_id">
-            <option value="0">General</option>
-                @foreach($categories as $category)
-                    
-                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-
-                @endforeach
-        </select>
-        </div>
-        <div class="form-group">
-        <label for="severity">Severidad</label>
-        <select class="form-control" id="severity">
-            <option value="M">Menor</option>
-            <option value="N">Normal</option>
-            <option value="A">Alta</option>
-        </select>
-        </div>
-        <div class="form-group">
-        <label for="title">Título</label>
-        <input type="text" class="form-control" id="title" aria-describedby="emailHelp" placeholder="Enter title">
-        </div>
-        <div class="form-group">
-        <label for="description">Descripción</label>
-        <textarea class="form-control" id="description" rows="3"></textarea>
-        </div>
-        <div class="form-group">
-    <!--  <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-        </div>
-        <div class="form-group">
-        <label for="exampleSelect1">Example select</label>
-        <select class="form-control" id="exampleSelect1">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-        </select>
-        </div>
-        <div class="form-group">
-        <label for="exampleSelect2">Example multiple select</label>
-        <select multiple="" class="form-control" id="exampleSelect2">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-        </select>
-        </div>
-        <div class="form-group">
-        <label for="exampleTextarea">Example textarea</label>
-        <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
-        </div>
-        <div class="form-group">
-        <label for="exampleInputFile">File input</label>
-        <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
-        <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
-        </div>
-        <fieldset class="form-group">
-        <legend>Radio buttons</legend>
-        <div class="form-check">
-            <label class="form-check-label">
-            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
-            Option one is this and that—be sure to include why it's great
-            </label>
-        </div>
-        <div class="form-check">
-        <label class="form-check-label">
-            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2">
-            Option two can be something else and selecting it will deselect option one
-            </label>
-        </div>
-        <div class="form-check disabled">
-        <label class="form-check-label">
-            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios3" value="option3" disabled="">
-            Option three is disabled
-            </label>
-        </div>
-        </fieldset>
-        <fieldset class="form-group">
-        <legend>Checkboxes</legend>
-        <div class="form-check">
-            <label class="form-check-label">
-            <input class="form-check-input" type="checkbox" value="" checked="">
-            Option one is this and that—be sure to include why it's great
-            </label>
-        </div>
-        <div class="form-check disabled">
-            <label class="form-check-label">
-            <input class="form-check-input" type="checkbox" value="" disabled="">
-            Option two is disabled
-            </label>
-        </div>
-        </fieldset>
-        <fieldset class="form-group">
-        <legend>Sliders</legend>
-        <label for="customRange1">Example range</label>
-        <input type="range" class="custom-range" id="customRange1">
-        </fieldset> -->
-        <button type="submit" class="btn btn-primary">Registrar</button>
-        </fieldset>
-    </form>
+        You are logged in!
 
     </div>
 </div>
