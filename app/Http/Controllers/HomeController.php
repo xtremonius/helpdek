@@ -38,6 +38,14 @@ class HomeController extends Controller
 
     public function postReport(Request $request)
     {
+        $messages = [
+            'category_id.exists' => 'La categoria seleccionada no existe en nuestra base de datos!',
+            'severity.required' => 'Debe elegir una severidad!',
+            'title.required' => 'Debe escribir el titulo del incidente!',
+            'title.min' => 'El titulo debe presentar al menos 5 caracteres!',
+            'description.required' => 'Debe escribir la descripción del incidente!',
+            'description.min' => 'La descripción debe presentar al menos 15 caracteres!',
+        ];
 
         $rules = [
             'category_id' => 'sometimes|exists:categories,id',
@@ -47,7 +55,7 @@ class HomeController extends Controller
         ];
 
 
-       $this->validate($request, $rules);
+       $this->validate($request, $rules, $messages);
 
        $incident = new Incident();
        $incident->category_id = $request->input('category_id') ?: null;// ?: operador ternario? si el valor es falso

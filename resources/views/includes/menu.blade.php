@@ -3,16 +3,16 @@
 
         <div class="card-body">        
             
-            <ul class="nav nav-pills flex-column">
+          <ul class="nav nav-pills nav-stacked">
             @if (auth()->check())
-                <li class="nav-item">
-                    <a class="nav-link p-3 mb-2 bg-light text-dark" href="#">Dashboard</a>
+                <li @if(request()->is('home')) class="active" @endif >
+                    <a class="nav-link p-3 mb-2 bg-light text-dark" href="/home">Dashboard</a>
                 </li>
-                <li class="nav-item">
+                <li >
                     <a class="nav-link p-3 mb-2 bg-light text-dark" href="#">Ver incidencias</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link p-3 mb-2 bg-light text-dark" href="#">Reportar incidencia</a>
+                <li @if(request()->is('reportar')) class="active" @endif>
+                    <a class="nav-link p-3 mb-2 bg-light text-dark" href="/reportar">Reportar incidencia</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle p-3 mb-2 bg-light text-dark" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Administración</a>
@@ -33,7 +33,7 @@
                     <a class="nav-link disabled" href="#">Disabled</a>
                 </li>
             </ul>
-            @endif
+            @endif 
 
         </div>
 </div>

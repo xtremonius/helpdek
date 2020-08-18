@@ -29,7 +29,7 @@
             <option value="">General</option>
             @foreach($categories as $category)
                 
-                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
 
             @endforeach
         </select>
@@ -37,9 +37,9 @@
         <div class="form-group">
         <label for="severity">Severidad</label>
         <select class="form-control" id="severity" name="severity">
-            <option value="M">Menor</option>
-            <option value="N">Normal</option>
-            <option value="A">Alta</option>
+            <option value="M" {{ old('severity') == 'M' ? 'selected' : '' }}>Menor</option>
+            <option value="N" {{ old('severity') == 'N' ? 'selected' : '' }}>Normal</option>
+            <option value="A" {{ old('severity') == 'A' ? 'selected' : '' }}>Alta</option>
         </select>
         </div>
         <div class="form-group">
