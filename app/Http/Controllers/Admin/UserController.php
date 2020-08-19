@@ -9,6 +9,21 @@ class UserController extends Controller
 {
     public function index()
     {
-        return 'Ruta /usuarios resuelta por UserController@index';
+        return view('admin.users.index');
+    }
+
+    public function store()
+    {
+        return back();
+    }
+
+    public function edit()
+    {
+        return view('admin.users.edit');
+    }
+
+    public function update()
+    {
+        return back();
     }
 }
