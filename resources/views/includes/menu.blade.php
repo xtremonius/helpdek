@@ -21,8 +21,8 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Administración</a>
                         <div class="dropdown-menu" style="">
-                            <a class="dropdown-item" href="usuarios">Usuarios</a>
-                            <a class="dropdown-item" href="#">Proyectos</a>
+                            <a class="dropdown-item" href="\usuarios">Usuarios</a>
+                            <a class="dropdown-item" href="\proyectos">Proyectos</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Configuración</a>
                         </div>

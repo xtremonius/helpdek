@@ -3,10 +3,15 @@
 @section('content')
 
 <div class="card">
-    <div class="card-header text-white bg-primary mb-3">Usuarios</div>
+    <div class="card-header text-white bg-primary mb-3">Editar usuario</div>
 
 
     <div class="card-body">
+        @if (session('notification'))
+        <div class="alert alert-success">
+            {{ session('notification') }}
+        </div>
+        @endif
         @if (count($errors) > 0)
             <div class="alert alert-danger">
                 <ul>    
@@ -23,20 +28,20 @@
 
                     <div class="form-group">
                         <label for="email">E-mail</label>
-                        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email" value="{{ old('email') }}">
+                        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email" readonly value="{{ old('email', $user->email) }}">
                         <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
                 
                     </div>
                     <div class="form-group">
                         <label for="name">Nombre</label>
-                        <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" placeholder="Enter name" value="{{ old('name') }}">
+                        <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" placeholder="Enter name" value="{{ old('name', $user->name) }}">
                     </div>
                     <div class="form-group">
-                        <label for="password">Contraseña</label>
-                        <input type="text" class="form-control" id="password" name="password" aria-describedby="emailHelp" placeholder="Enter password" value="{{ old('password', Str::random(8)) }}">
+                        <label for="password">Contraseña    <em>(Ingresar solo si se desea modificar)</em></label>
+                        <input type="text" class="form-control" id="password" name="password" aria-describedby="emailHelp" placeholder="Enter password" value="{{ old('password') }}">
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Guardar usuario</button>
+                        <button type="submit" class="btn btn-primary">Guardar cambio</button>
                 </fieldset>
             </form>
             <table class="table">
