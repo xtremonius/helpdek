@@ -11,6 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    @yield('scripts')
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -33,6 +34,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                        @if (auth()->check())
                         <form class="navbar-form">
                             <div class="form-group">
                                 <select name="" class="form-control">
@@ -43,6 +45,7 @@
                             </div>
 
                         </form>
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
