@@ -11,6 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/admin/projects/dashboard.js') }}" defer></script>
     @yield('scripts')
 
     <!-- Fonts -->
@@ -37,10 +38,12 @@
                         @if (auth()->check())
                         <form class="navbar-form">
                             <div class="form-group">
-                                <select name="" class="form-control">
-                                    <option value="">Proyecto A</option>
-                                    <option value="">Proyecto B</option>
-                                    <option value="">Proyecto C</option>
+                                <select name="" id="list-of-projects" class="form-control">
+                                    @foreach (auth()->user()->list_of_projects as $project)
+                                    <option value="{{ $project->id }}" @if($project->id==auth()->user()->selected_project_id) selected @endif>{{ $project->name }}</option>
+                                    
+                                    
+                                    @endforeach
                                 </select>
                             </div>
 

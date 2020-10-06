@@ -34,5 +34,20 @@ class Project extends Model
         return $this->hasMany('App\Level');
     }
 
+    /**
+     * relationships
+     */
+    public function users()
+    {
+        return $this->belongsToMany('App\User');
+    }
+
+    // accessors
+
+    public function getFirstLevelIdAttribute()
+    {
+        return $this->levels->first()->id;
+    }
+
 
 }

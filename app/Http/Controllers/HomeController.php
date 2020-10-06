@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Incident;
-use Validator;
+use App\ProjectUser;
+
 
 class HomeController extends Controller
 {
@@ -26,46 +27,52 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
-    }
+        $user = auth()->user();
+        $selected_project_id = $user->selected_project_id;
 
-    public function getReport()
-    {
-        $categories = Category::where('project_id', 1)->get();
-        return view('report')->with(compact('categories'));
-    }
+        if($user->is_support)
+        {
+            $my_incidents = Incident::where('project_id', $selected_project_id)
+                                          ->where('support_id', $user->id)->get();
 
+            $projectUser = ProjectUser::where('project_id', $selected_project_id)
+                                           ->where('user_id', $user->id)->first();
 
-    public function postReport(Request $request)
-    {
-        $messages = [
-            'category_id.exists' => 'La categoria seleccionada no existe en nuestra base de datos!',
-            'severity.required' => 'Debe elegir una severidad!',
-            'title.required' => 'Debe escribir el titulo del incidente!',
-            'title.min' => 'El titulo debe presentar al menos 5 caracteres!',
-            'description.required' => 'Debe escribir la descripción del incidente!',
-            'description.min' => 'La descripción debe presentar al menos 15 caracteres!',
-        ];
+            // dd($projectUser->level_id);
 
-        $rules = [
-            'category_id' => 'sometimes|exists:categories,id',
-            'severity' => 'required|in:M,N,A',
-            'title' => 'required|min:5',
-            'description' => 'required|min:15',
-        ];
-
-
-       $this->validate($request, $rules, $messages);
-
-       $incident = new Incident();
-       $incident->category_id = $request->input('category_id') ?: null;// ?: operador ternario? si el valor es falso
-       $incident->severity = $request->input('severity');
-       $incident->title = $request->input('title');
-       $incident->description = $request->input('description');
-       $incident->client_id = auth()->user()->id;
-       $incident->save();
-
-       return back(); //vuelve a la pagina anterior que estaba el usuario.
+            $pending_incidents = Incident::where('support_id', null)
+                                            ->where('level_id', $projectUser->level_id)->get();
+            
+            $incidents_by_me = Incident::where('client_id', $user->id)
+                                            ->where('project_id', $selected_project_id)->get();
         
+            
+            return view('home')->with(compact('my_incidents', 'pending_incidents', 'incidents_by_me'));
+
+
+        }
+
+
+        
+        $incidents_by_me = Incident::where('client_id', $user->id)
+                                    ->where('project_id', $selected_project_id)->get();
+
+        //dd($my_incidents);
+
+        //return view('home')->with(compact('my_incidents', 'pending_incidents', 'incidents_by_me'));
+        return view('home')->with(compact('incidents_by_me'));
+    }
+
+
+
+    public function selectProject($id)
+    {
+        /**
+         * se puede validar que el usuario este asociado con el proyecto
+         */
+        $user = auth()->user();
+        $user->selected_project_id = $id;
+        $user->save();
+        return back();
     }
 }
